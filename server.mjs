@@ -1,3 +1,4 @@
+
 import express from "express";
 import dotenv from "dotenv";
 import OpenAI from "openai";
@@ -8,26 +9,34 @@ import { fileURLToPath } from "url";
 dotenv.config();
 
 const app = express();
-app.set('trust proxy', 1);
+
+// Configuração para funcionar corretamente atrás do proxy do Render
+app.set("trust proxy", 1);
+
 const PORT = process.env.PORT || 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Middlewares
 app.use(express.json({ limit: "1mb" }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// Verificação da chave da Groq
 if (!process.env.GROQ_API_KEY) {
-  console.error("ERRO: configure GROQ_API_KEY no arquivo .env");
+  console.error("ERRO: configure GROQ_API_KEY no ambiente do servidor.");
   process.exit(1);
 }
 
+// Conexão com a API da Groq
 const groq = new OpenAI({
   apiKey: process.env.GROQ_API_KEY,
   baseURL: "https://api.groq.com/openai/v1"
 });
 
-const MODEL = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
+// Modelo padrão atualizado
+const MODEL =
+  process.env.GROQ_MODEL || "openai/gpt-oss-120b";
 
 /*
   MATERIAL OFICIAL DO TRABALHO
@@ -39,13 +48,14 @@ Você é o Tutor IA de um trabalho escolar de Biologia do 9º ano C,
 preparado para a Prô Evelyn.
 
 O assunto do trabalho é TEMA 1 – TRANSGÊNICOS.
-O material de referência é o livro didático de Biologia, páginas 28, 30 e 31.
+O material de referência é o livro didático de Biologia,
+páginas 28, 30 e 31.
 
 REGRA FUNDAMENTAL:
 Você já sabe qual é o livro e já recebeu o conteúdo estudado.
 NUNCA pergunte qual é o título ou o autor do livro.
 NUNCA diga que não sabe a qual livro o aluno está se referindo.
-Use o material abaixo como referência principal sempre que o aluno fizer perguntas sobre o trabalho.
+Use o material abaixo como referência principal.
 
 ==============================
 PÁGINA 28 – O QUE SÃO TRANSGÊNICOS?
@@ -121,6 +131,7 @@ Resposta esperada:
 Nunca responda perguntando qual é o livro.
 `;
 
+// Limite de mensagens para evitar excesso de requisições
 const chatLimiter = rateLimit({
   windowMs: 60 * 1000,
   limit: 20,
@@ -148,9 +159,13 @@ app.get("/api/status", (req, res) => {
 // Tutor IA
 app.post("/api/chat", chatLimiter, async (req, res) => {
   try {
-    const { question, history = [] } = req.body;
+    const { question, history = [] } = req.body || {};
 
-    if (!question || typeof question !== "string" || !question.trim()) {
+    if (
+      !question ||
+      typeof question !== "string" ||
+      !question.trim()
+    ) {
       return res.status(400).json({
         error: "Digite uma pergunta antes de enviar."
       });
@@ -204,22 +219,41 @@ app.post("/api/chat", chatLimiter, async (req, res) => {
       throw new Error("A IA não retornou uma resposta.");
     }
 
-    res.json({ answer });
+    return res.json({ answer });
 
   } catch (error) {
     console.error("Erro no Tutor IA:", error);
 
-    res.status(500).json({
+    if (error.status === 429) {
+      return res.status(429).json({
+        error: "A IA está recebendo muitas solicitações. Tente novamente em instantes."
+      });
+    }
+
+    if (error.status === 401 || error.status === 403) {
+      return res.status(500).json({
+        error: "Não foi possível autenticar a API da Groq. Verifique a configuração da chave no Render."
+      });
+    }
+
+    if (error.status === 404) {
+      return res.status(500).json({
+        error: "O modelo configurado não está disponível na Groq. Verifique GROQ_MODEL no Render."
+      });
+    }
+
+    return res.status(500).json({
       error: "Não foi possível obter uma resposta agora. Verifique o servidor e tente novamente."
     });
   }
 });
 
+// Inicialização do servidor
 app.listen(PORT, "0.0.0.0", () => {
   console.log("--------------------------------------");
   console.log(" TUTOR IA - TRANSGÊNICOS");
   console.log("--------------------------------------");
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
   console.log(`Modelo: ${MODEL}`);
   console.log("Conteúdo do livro carregado no backend.");
 });
