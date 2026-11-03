@@ -1,0 +1,43 @@
+TRANS-GÊNICOS IA - INSTALAÇÃO WINDOWS
+
+1. Extraia esta pasta para um local fácil, por exemplo:
+   C:\Download\trabalho bio\Transgenicos_IA_Groq
+
+2. Abra a pasta Transgenicos_IA_Groq.
+
+3. Na barra de endereço do Explorador de Arquivos, digite cmd e aperte Enter.
+
+4. Instale as dependências:
+   npm install
+
+5. Crie o arquivo .env:
+   - Faça uma cópia de .env.example.
+   - Renomeie a cópia para .env (sem .txt).
+   - Abra .env no Bloco de Notas.
+   - Substitua COLE_SUA_CHAVE_AQUI pela sua chave da Groq.
+   - Salve o arquivo.
+
+6. Crie uma chave em https://console.groq.com/keys.
+   Não envie sua chave para ninguém e não a coloque no HTML.
+
+7. Inicie o servidor:
+   npm start
+
+8. Abra no navegador:
+   http://localhost:3000
+
+TESTE DE SAÚDE:
+   http://localhost:3000/api/health
+   Deve mostrar status online e aiConfigured true quando a chave estiver configurada.
+
+PARA PARAR:
+   Volte ao terminal e pressione Ctrl + C.
+
+OBSERVAÇÕES IMPORTANTES:
+- O site usa a Groq como provedor de IA. A disponibilidade, os modelos e os limites
+  gratuitos podem mudar; consulte https://console.groq.com/docs/models.
+- O uso gratuito possui limites e não é ilimitado nem garantido para sempre.
+- A chave fica no servidor (.env), nunca no navegador.
+- Este projeto é preparado para testes locais. Antes de publicar para qualquer pessoa,
+  configure hospedagem HTTPS, limites de uso, monitoramento e proteção contra abuso.
+- Não publique o arquivo .env nem envie sua chave ao GitHub.
