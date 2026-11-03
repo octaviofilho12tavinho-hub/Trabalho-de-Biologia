@@ -1,0 +1,731 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transgênicos | Biologia 9º ano</title>
+
+<style>
+:root {
+  --green: #16834b;
+  --dark: #10251b;
+  --light: #f3f8f4;
+  --text: #24352b;
+  --muted: #718078;
+  --border: #e1eae3;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--light);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(120deg, #103b27, #16834b);
+  color: white;
+  padding: 35px 20px;
+}
+
+.header-content {
+  max-width: 1100px;
+  margin: auto;
+}
+
+header h1 {
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+header p {
+  opacity: .95;
+}
+
+.integrantes {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255,255,255,.25);
+}
+
+.integrantes strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.integrantes p {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 25px auto;
+  padding: 0 18px;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+nav button {
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text);
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+nav button.active {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.035);
+}
+
+h2 {
+  color: var(--green);
+  margin-bottom: 15px;
+}
+
+h3 {
+  margin: 15px 0 8px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+ul, ol {
+  padding-left: 22px;
+  margin: 10px 0;
+}
+
+li {
+  margin-bottom: 7px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 15px;
+}
+
+.info {
+  background: #f2f8f3;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #e0eee3;
+}
+
+.info strong {
+  color: var(--green);
+}
+
+.highlight {
+  border-left: 4px solid var(--green);
+  padding: 15px;
+  background: #f2f8f3;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.question {
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 15px 0;
+}
+
+.question label {
+  display: block;
+  padding: 9px;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.question label:hover {
+  background: #f2f8f3;
+}
+
+.question input {
+  margin-right: 8px;
+}
+
+.primary {
+  background: var(--green);
+  color: white;
+  border: 0;
+  padding: 12px 20px;
+  border-radius: 9px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.primary:hover {
+  background: #116b3c;
+}
+
+.primary:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.result {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.chat-box {
+  height: 430px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 15px;
+  background: #f9fcfa;
+  margin-bottom: 15px;
+}
+
+.message {
+  padding: 12px 15px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  max-width: 90%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.message.user {
+  background: #dff3e5;
+  margin-left: auto;
+}
+
+.message.bot {
+  background: white;
+  border: 1px solid var(--border);
+  margin-right: auto;
+}
+
+.message strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.chat-input input:focus {
+  outline: 2px solid #b8e3c6;
+}
+
+.quick-questions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.quick-questions button {
+  background: #edf7ef;
+  border: 1px solid #d4ead9;
+  padding: 9px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #17683c;
+}
+
+.quick-questions button:hover {
+  background: #dff3e5;
+}
+
+.status {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media(max-width:600px) {
+  header h1 {
+    font-size: 27px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .chat-input {
+    flex-direction: column;
+  }
+
+  .chat-input button {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-content">
+    <h1>🌱 Transgênicos</h1>
+    <p>Trabalho de Biologia • 9º ano C</p>
+
+    <div class="integrantes">
+      <strong>Integrantes do grupo:</strong>
+      <p>Octavio Filho • Alexandre Calvo • Bruna Galiano • Miguel Taboada</p>
+      <p>Professora: Prô Evelyn</p>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+<nav>
+  <button class="active" data-page="slide">📚 Conteúdo</button>
+  <button data-page="quiz">📝 Quiz</button>
+  <button data-page="tutor">🤖 Tutor IA</button>
+</nav>
+
+<!-- CONTEÚDO -->
+<section id="slide" class="page active">
+
+  <div class="card">
+    <h2>O que são transgênicos?</h2>
+    <p>
+      Transgênicos são organismos que receberam um ou mais genes
+      de outra espécie e passaram a apresentar uma característica
+      determinada por esse gene.
+    </p>
+
+    <div class="highlight">
+      <strong>Exemplo do livro:</strong>
+      Um gene de água-viva relacionado à bioluminescência foi
+      inserido em células de coelho. O animal passou a brilhar
+      sob uma luz especial.
+    </div>
+
+    <h3>DNA recombinante</h3>
+    <p>
+      A incorporação de um gene de uma espécie no genoma de outra
+      é chamada de recombinação gênica ou DNA recombinante.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Produção de alimentos transgênicos</h2>
+
+    <div class="grid">
+      <div class="info">
+        <strong>Resistência</strong>
+        <p>Resistência a agrotóxicos, pragas e variações ambientais.</p>
+      </div>
+
+      <div class="info">
+        <strong>Conservação</strong>
+        <p>Retardar o amadurecimento e aumentar o tempo de armazenamento.</p>
+      </div>
+
+      <div class="info">
+        <strong>Valor nutricional</strong>
+        <p>Desenvolvimento de alimentos com maior valor nutricional.</p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>Arroz-dourado:</strong>
+      produz betacaroteno, substância precursora da vitamina A.
+    </div>
+
+    <p>
+      Exemplos de vegetais modificados: soja, milho, trigo, tomate,
+      mamão, melão, abobrinha, feijão e banana.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Comercialização e consumo</h2>
+    <ul>
+      <li>No Brasil, a CTNBio fiscaliza a biossegurança.</li>
+      <li>O livro menciona símbolo obrigatório em embalagens de produtos constituídos por mais de 1% de organismos transgênicos ou derivados.</li>
+      <li>O livro informa que estudos científicos recentes não apresentam indícios de que o consumo de transgênicos faça mal à saúde.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Impactos ambientais</h2>
+    <p>O livro apresenta possíveis impactos ambientais relacionados aos transgênicos:</p>
+
+    <ol>
+      <li>Perda de variabilidade genética e de organismos naturais.</li>
+      <li>Monopólio de empresas produtoras de sementes.</li>
+      <li>Alteração de características naturais dos alimentos, como o sabor.</li>
+      <li>Poluição gênica, pela transferência de genes entre espécies transgênicas e não transgênicas.</li>
+      <li>Surgimento de ervas daninhas e insetos super-resistentes.</li>
+      <li>Aumento do uso de agroquímicos.</li>
+      <li>Perda de insetos polinizadores.</li>
+      <li>Desequilíbrio ecológico.</li>
+      <li>Alterações na cadeia alimentar.</li>
+      <li>Diminuição da biodiversidade.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Outras aplicações da transgenia</h2>
+
+    <div class="grid">
+      <div class="info">
+        <strong>🦠 Bactérias</strong>
+        <p>Podem decompor plástico e produzir compostos utilizados em plásticos biodegradáveis.</p>
+      </div>
+
+      <div class="info">
+        <strong>🦟 Mosquitos</strong>
+        <p>Podem produzir larvas incapazes de se desenvolver até a fase adulta.</p>
+      </div>
+
+      <div class="info">
+        <strong>🐄 Produção de leite</strong>
+        <p>Bactérias transgênicas podem produzir hormônio do crescimento bovino.</p>
+      </div>
+
+      <div class="info">
+        <strong>🐟 GloFish</strong>
+        <p>Peixes que receberam genes relacionados à fluorescência e podem brilhar.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="page">
+
+  <div class="card">
+    <h2>Quiz de revisão</h2>
+    <p>Responda às duas questões e confira seu resultado.</p>
+
+    <div class="question">
+      <h3>1. O que caracteriza um organismo transgênico?</h3>
+
+      <label><input type="radio" name="q1" value="A"> A) Um organismo que não possui DNA.</label>
+      <label><input type="radio" name="q1" value="B"> B) Um organismo que recebeu gene de outra espécie e pode expressar uma característica determinada por ele.</label>
+      <label><input type="radio" name="q1" value="C"> C) Um organismo que foi produzido somente por clonagem.</label>
+      <label><input type="radio" name="q1" value="D"> D) Um organismo que não apresenta características genéticas.</label>
+      <label><input type="radio" name="q1" value="E"> E) Um organismo que não possui células.</label>
+    </div>
+
+    <div class="question">
+      <h3>2. Qual órgão fiscaliza a biossegurança dos transgênicos no Brasil?</h3>
+
+      <label><input type="radio" name="q2" value="A"> A) IBGE.</label>
+      <label><input type="radio" name="q2" value="B"> B) INMETRO.</label>
+      <label><input type="radio" name="q2" value="C"> C) CTNBio.</label>
+      <label><input type="radio" name="q2" value="D"> D) MEC.</label>
+      <label><input type="radio" name="q2" value="E"> E) OMS.</label>
+    </div>
+
+    <button class="primary" onclick="checkQuiz()">Corrigir respostas</button>
+    <div id="quizResult" class="result"></div>
+  </div>
+
+</section>
+
+<!-- TUTOR IA -->
+<section id="tutor" class="page">
+
+  <div class="card">
+    <h2>🤖 Tutor IA de Biologia</h2>
+
+    <p>
+      Tire suas dúvidas sobre transgênicos. O tutor utiliza como
+      referência o conteúdo do livro, páginas 28, 30 e 31.
+    </p>
+
+    <div id="connectionStatus" class="status">
+      Verificando conexão com o servidor...
+    </div>
+
+    <div class="quick-questions">
+      <button onclick="quickAsk('O que são transgênicos?')">O que são transgênicos?</button>
+      <button onclick="quickAsk('Quais são os impactos ambientais citados no livro?')">Impactos ambientais</button>
+      <button onclick="quickAsk('O que é DNA recombinante?')">DNA recombinante</button>
+      <button onclick="quickAsk('O que é arroz-dourado?')">Arroz-dourado</button>
+    </div>
+
+    <div id="chatBox" class="chat-box">
+      <div class="message bot">
+        <strong>Tutor IA</strong>
+        Olá! Sou seu tutor de Biologia. 🌱
+        Pode perguntar qualquer coisa sobre o conteúdo de transgênicos das páginas 28, 30 e 31!
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <input
+        type="text"
+        id="questionInput"
+        placeholder="Digite sua pergunta..."
+        maxlength="3000"
+      >
+
+      <button class="primary" id="sendButton" onclick="sendQuestion()">
+        Enviar
+      </button>
+    </div>
+  </div>
+
+</section>
+
+</div>
+
+<footer>
+  Trabalho de Biologia • Transgênicos • 9º ano C
+  <br>
+  Octavio Filho • Alexandre Calvo • Bruna Galiano • Miguel Taboada
+</footer>
+
+<script>
+
+// NAVEGAÇÃO
+document.querySelectorAll("nav button").forEach(button => {
+  button.addEventListener("click", () => {
+
+    document.querySelectorAll("nav button").forEach(item => {
+      item.classList.remove("active");
+    });
+
+    document.querySelectorAll(".page").forEach(page => {
+      page.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    document.getElementById(button.dataset.page).classList.add("active");
+  });
+});
+
+// QUIZ
+function checkQuiz() {
+
+  const answer1 = document.querySelector('input[name="q1"]:checked');
+  const answer2 = document.querySelector('input[name="q2"]:checked');
+
+  const result = document.getElementById("quizResult");
+
+  if (!answer1 || !answer2) {
+    result.textContent = "Responda às duas questões antes de corrigir.";
+    result.style.color = "#b45309";
+    return;
+  }
+
+  let score = 0;
+  let feedback = [];
+
+  if (answer1.value === "B") {
+    score++;
+    feedback.push("Questão 1: correta!");
+  } else {
+    feedback.push("Questão 1: incorreta. A resposta correta é B.");
+  }
+
+  if (answer2.value === "C") {
+    score++;
+    feedback.push("Questão 2: correta!");
+  } else {
+    feedback.push("Questão 2: incorreta. A resposta correta é C.");
+  }
+
+  result.style.color = score === 2 ? "#16834b" : "#b45309";
+
+  result.innerHTML =
+    `Você acertou ${score} de 2 questões.<br>` +
+    feedback.join("<br>");
+}
+
+// TUTOR IA
+const chatBox = document.getElementById("chatBox");
+const questionInput = document.getElementById("questionInput");
+const sendButton = document.getElementById("sendButton");
+
+let history = [];
+let isSending = false;
+
+function addMessage(role, content) {
+
+  const message = document.createElement("div");
+
+  message.className = role === "user"
+    ? "message user"
+    : "message bot";
+
+  const title = document.createElement("strong");
+  title.textContent = role === "user" ? "Você" : "Tutor IA";
+
+  const text = document.createElement("div");
+  text.textContent = content;
+
+  message.appendChild(title);
+  message.appendChild(text);
+
+  chatBox.appendChild(message);
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  return message;
+}
+
+async function sendQuestion() {
+
+  const question = questionInput.value.trim();
+
+  if (!question || isSending) return;
+
+  isSending = true;
+  sendButton.disabled = true;
+  sendButton.textContent = "Enviando...";
+  questionInput.disabled = true;
+
+  addMessage("user", question);
+
+  const loadingMessage = addMessage(
+    "assistant",
+    "Estou consultando o conteúdo do livro..."
+  );
+
+  questionInput.value = "";
+
+  try {
+
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        question,
+        history
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Erro ao conversar com o tutor.");
+    }
+
+    const answer = data.answer;
+
+    loadingMessage.querySelector("div").textContent = answer;
+
+    history.push(
+      { role: "user", content: question },
+      { role: "assistant", content: answer }
+    );
+
+    history = history.slice(-20);
+
+  } catch (error) {
+
+    loadingMessage.querySelector("div").textContent =
+      "Não consegui responder agora. " + error.message;
+
+  } finally {
+
+    isSending = false;
+    sendButton.disabled = false;
+    sendButton.textContent = "Enviar";
+    questionInput.disabled = false;
+    questionInput.focus();
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+}
+
+function quickAsk(question) {
+  questionInput.value = question;
+  sendQuestion();
+}
+
+questionInput.addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    sendQuestion();
+  }
+});
+
+// VERIFICAÇÃO DO SERVIDOR
+async function checkConnection() {
+
+  const status = document.getElementById("connectionStatus");
+
+  try {
+
+    const response = await fetch("/api/status");
+    const data = await response.json();
+
+    if (!response.ok || !data.online) {
+      throw new Error("Servidor indisponível");
+    }
+
+    status.textContent =
+      "🟢 Tutor IA conectado • Modelo: " + data.model;
+
+  } catch {
+
+    status.textContent =
+      "🔴 Não foi possível conectar ao servidor da IA.";
+
+  }
+}
+
+checkConnection();
+
+</script>
+
+</body>
+</html>
