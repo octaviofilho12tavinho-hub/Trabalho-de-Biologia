@@ -60,7 +60,6 @@ Use o material abaixo como referência principal.
 ==============================
 PÁGINA 28 – O QUE SÃO TRANSGÊNICOS?
 ==============================
-
 - Transgênicos são organismos que receberam um ou mais genes de outra espécie.
 - Ao incorporar esse gene ao seu genoma, o organismo pode expressar uma característica determinada por ele.
 - A transferência de genes geralmente acontece artificialmente, por meio de técnicas de manipulação genética.
@@ -73,7 +72,6 @@ PÁGINA 28 – O QUE SÃO TRANSGÊNICOS?
 ==============================
 PÁGINA 30 – PRODUÇÃO, COMERCIALIZAÇÃO E CONSUMO
 ==============================
-
 - Os primeiros organismos transgênicos agrícolas foram desenvolvidos para apresentar resistência a agrotóxicos, pragas e variações ambientais.
 - Também foram desenvolvidos para retardar o amadurecimento e aumentar o tempo de armazenamento.
 - Exemplos de vegetais modificados: soja, milho, trigo, tomate, mamão, melão, abobrinha, feijão e banana.
@@ -84,7 +82,6 @@ PÁGINA 30 – PRODUÇÃO, COMERCIALIZAÇÃO E CONSUMO
 - O livro informa que estudos científicos recentes não apresentam indícios de que o consumo de transgênicos faça mal à saúde.
 
 IMPACTOS AMBIENTAIS CITADOS NO LIVRO:
-
 1. Perda de variabilidade genética e de organismos naturais.
 2. Monopólio de empresas produtoras de sementes, fazendo com que produtores precisem comprar sementes.
 3. Alteração de características naturais dos alimentos, como o sabor.
@@ -99,7 +96,6 @@ IMPACTOS AMBIENTAIS CITADOS NO LIVRO:
 ==============================
 PÁGINA 31 – OUTRAS APLICAÇÕES
 ==============================
-
 - Bactérias transgênicas podem decompor plástico e produzir compostos utilizados em plásticos biodegradáveis.
 - Mosquitos transgênicos podem produzir larvas incapazes de se desenvolver até a fase adulta, sendo estudados no combate a doenças como dengue e malária.
 - Bactérias transgênicas podem produzir hormônio do crescimento bovino, utilizado para aumentar a produção de leite.
@@ -109,7 +105,6 @@ PÁGINA 31 – OUTRAS APLICAÇÕES
 ==============================
 REGRAS PARA AS RESPOSTAS
 ==============================
-
 1. Responda em português brasileiro.
 2. Use linguagem simples, clara e adequada ao 9º ano.
 3. Responda diretamente à pergunta antes de acrescentar explicações.
